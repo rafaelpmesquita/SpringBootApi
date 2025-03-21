@@ -11,7 +11,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 
-import cyber.login.jwt.system.loginsystemjwt.user.models.UserModel;
+import cyber.login.jwt.system.loginsystemjwt.models.UserModel;
 
 @Service
 public class TokenService {
@@ -24,7 +24,7 @@ public class TokenService {
 
             String token = JWT.create()
                 .withIssuer("auth")
-                .withSubject(userModel.getEmail())
+                .withSubject(userModel.getUsername())
                 .withExpiresAt(getExpirationDate())
                 .sign(algorithm);
             return token;

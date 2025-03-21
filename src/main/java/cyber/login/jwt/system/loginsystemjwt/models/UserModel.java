@@ -1,4 +1,4 @@
-package cyber.login.jwt.system.loginsystemjwt.user.models;
+package cyber.login.jwt.system.loginsystemjwt.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +14,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import cyber.login.jwt.system.loginsystemjwt.user.enums.UserRole;
+import cyber.login.jwt.system.loginsystemjwt.enums.UserRole;
 import jakarta.persistence.*;
 
 
@@ -55,6 +55,10 @@ public class UserModel implements UserDetails {
         if (this.userRole == userRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
+
+    public UUID getId() {
+        return this.id;
+    }
     @Override
     public String getPassword() {
         return password;
@@ -62,6 +66,15 @@ public class UserModel implements UserDetails {
     @Override
     public String getUsername() {
         return email;
+    }
+    public UserRole getUserRole() {
+        return this.userRole;
+    }
+    public Date getCreatedAt() {
+        return this.createdAt;
+    }
+    public Date getUpdatedAt() {
+        return this.updatedAt;
     }
     @Override
     public boolean isAccountNonExpired() {
@@ -80,4 +93,25 @@ public class UserModel implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public void setCreatedAt(Date date) {
+        this.createdAt = date;
+    }
+
+    public void setUpdatedAt(Date date) {
+        this.updatedAt = date;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUserRole(UserRole role) {
+        this.userRole = role;
+    }
+    
 }

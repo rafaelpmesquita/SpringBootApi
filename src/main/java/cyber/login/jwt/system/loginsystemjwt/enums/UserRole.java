@@ -1,4 +1,4 @@
-package cyber.login.jwt.system.loginsystemjwt.user.enums;
+package cyber.login.jwt.system.loginsystemjwt.enums;
 
 public enum UserRole {
     ADMIN("admin"),
