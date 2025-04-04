@@ -68,7 +68,7 @@ public class AuthorizationService implements IAuthorizationService {
     public ResponseEntity<Object> register(@RequestBody RegisterDto registerDto) {
         try {
             if (userRepository.findByEmail(registerDto.email()) != null) {
-                throw new UserAlreadyExistsException("Usuário com email " + registerDto.email() + " já existe.");
+                throw new BadCredentialsException("Usuário com email " + registerDto.email() + " já existe.");
             }
 
             String encryptedPassword = new BCryptPasswordEncoder().encode(registerDto.password());

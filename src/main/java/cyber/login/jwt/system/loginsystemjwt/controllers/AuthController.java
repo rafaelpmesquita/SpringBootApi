@@ -22,11 +22,11 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Object> authdto(@RequestBody @Valid AuthenticationDto authDto){
+    public ResponseEntity<Object> login(@RequestBody @Valid AuthenticationDto authDto){
         return authorizationService.login(authDto);
     }
 
-
+    
     @PostMapping("/register")
     public ResponseEntity<Object> register (@RequestBody @Valid RegisterDto registerDto){
         return authorizationService.register(registerDto);

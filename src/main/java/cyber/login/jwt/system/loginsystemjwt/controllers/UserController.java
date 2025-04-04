@@ -36,14 +36,12 @@ public class UserController {
         return userService.updateUser(updateUserDto);
     }
 
-    //ADMIN
-    @PreAuthorize("hasRole('ADMIN')")   
+
     @GetMapping("/all")
     public ResponseEntity<List<UserModel>> getAllUsers(){
         return userService.getAllUsers();
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("")
     public ResponseEntity<Object> deleteUser(@RequestParam UUID id){
         return userService.deleteUser(id);

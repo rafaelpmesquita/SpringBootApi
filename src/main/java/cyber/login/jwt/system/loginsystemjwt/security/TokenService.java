@@ -16,7 +16,7 @@ import cyber.login.jwt.system.loginsystemjwt.models.UserModel;
 @Service
 public class TokenService {
 
-    private String secret = "segredinho";
+    private String secret = "secret";
 
     public String generateToken(UserModel userModel){
         try {
