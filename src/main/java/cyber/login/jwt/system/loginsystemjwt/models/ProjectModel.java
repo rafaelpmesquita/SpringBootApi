@@ -22,7 +22,6 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 public class ProjectModel {
     @Id
@@ -44,6 +43,9 @@ public class ProjectModel {
             "accountNonExpired", "authorities", "accountNonLocked" }) // Escondendo outros campos
     @ManyToOne
     private UserModel owner;
+    
+    public ProjectModel() {
+    }
 
     public ProjectModel(String name, String description, UserModel owner, Date createdAt) {
         this.name = name;
@@ -52,8 +54,13 @@ public class ProjectModel {
         this.createdAt = createdAt;
     }
 
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setId(long id){
+        this.id = id;
     }
 
     public void setDescription(String description) {
@@ -62,6 +69,13 @@ public class ProjectModel {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getName(){
+        return  this.name;
+    }
+    public String getDescription(){
+        return  this.description;
     }
 
 }

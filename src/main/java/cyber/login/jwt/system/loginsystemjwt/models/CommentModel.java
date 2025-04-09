@@ -15,7 +15,6 @@ import io.micrometer.common.lang.Nullable;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 public class CommentModel {
 
@@ -27,7 +26,7 @@ public class CommentModel {
     private String content;
 
     @JsonIgnoreProperties({ "password", "createdAt", "updatedAt", "userRole", "enabled", "credentialsNonExpired",
-            "accountNonExpired", "authorities", "accountNonLocked" }) 
+            "accountNonExpired", "authorities", "accountNonLocked" })
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private UserModel user;
@@ -43,11 +42,47 @@ public class CommentModel {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public CommentModel(String content, UserModel user, @Nullable TaskModel task, @Nullable ProjectModel project) {
+    public CommentModel(long par, String content, UserModel user, @Nullable TaskModel task,
+            @Nullable ProjectModel project, LocalDateTime now) {
         this.content = content;
         this.user = user;
         this.task = task;
         this.project = project;
         this.createdAt = LocalDateTime.now();
+    }
+
+    public CommentModel() {
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public UserModel getUser() {
+        return user;
+    }
+
+    public void setUser(UserModel user) {
+        this.user = user;
+    }
+
+    public TaskModel getTask() {
+        return task;
+    }
+
+    public void setTask(TaskModel task) {
+        this.task = task;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

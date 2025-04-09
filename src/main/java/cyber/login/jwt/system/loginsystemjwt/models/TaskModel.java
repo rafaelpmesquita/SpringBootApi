@@ -21,54 +21,72 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 public class TaskModel {
 
- @Id
- @GeneratedValue(strategy = GenerationType.IDENTITY)
- private Long id; // Identificador único da entidade
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // Identificador único da entidade
 
- private String title;
+    private String title;
 
- @Enumerated(EnumType.STRING)
- private StatusTask status; // PENDENTE, EM_ANDAMENTO, CONCLUIDA
+    @Enumerated(EnumType.STRING)
+    private StatusTask status; // PENDENTE, EM_ANDAMENTO, CONCLUIDA
 
- @Temporal(TemporalType.TIMESTAMP)
- @Column(name = "created_at", nullable = false, updatable = false)
- private Date createdAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Date createdAt;
 
- @Temporal(TemporalType.TIMESTAMP)
- @Column(name = "updated_at", nullable = true)
- private Date updatedAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at", nullable = true)
+    private Date updatedAt;
 
- @Temporal(TemporalType.TIMESTAMP)
- @Column(name = "started_at", nullable = true)
- private Date startedAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "started_at", nullable = true)
+    private Date startedAt;
 
- @Temporal(TemporalType.TIMESTAMP)
- @Column(name = "finished_at", nullable = true)
- private Date finishedAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "finished_at", nullable = true)
+    private Date finishedAt;
 
- @ManyToOne
- private ProjectModel project;
+    @ManyToOne
+    private ProjectModel project;
 
- public TaskModel(String title, StatusTask status, Date createdAt, ProjectModel project) {
-     this.title = title;
-     this.status = status;
-     this.createdAt = createdAt;
-     this.project = project;
- }
+    public TaskModel() {
+    }
 
- public void setTitle(String title) {
-     this.title = title;
- }
+    public TaskModel(String title, StatusTask status, Date createdAt, ProjectModel project) {
+        this.title = title;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.project = project;
+    }
 
- public void setStatus(StatusTask status) {
-     this.status = status;
- }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
- public void setUpdatedAt(Date updatedAt) {
-     this.updatedAt = updatedAt;
- }
+    public void setStatus(StatusTask status) {
+        this.status = status;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public long getId() {
+        return this.id;
+    }
+
+    public StatusTask getStatus() {
+        return this.status;
+    }
 }

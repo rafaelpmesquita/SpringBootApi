@@ -1,5 +1,6 @@
 package cyber.login.jwt.system.loginsystemjwt.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +72,7 @@ public class CommentService implements ICommentService {
         }
 
         // Cria o comentário associando apenas um dos dois
-        CommentModel comment = new CommentModel(commentDto.content(), usuarioLogado, task, project);
+        CommentModel comment = new CommentModel(1L, commentDto.content(), usuarioLogado, task, project, LocalDateTime.now());
         commentRepository.save(comment);
 
         return ResponseEntity.ok(comment);
